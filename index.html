@@ -154,7 +154,12 @@
           
           <div>
             <label class="block text-xs font-medium text-slate-600 mb-1">Judul Kegiatan Ujian</label>
-            <input type="text" id="input-judul-ujian" value="ASESEMEN SUMATIF TENGAH SEMESTER GANJIL TA 2026/2027" 
+            <input type="text" id="input-judul-ujian" value="UJIAN TENGAH SEMESTER GANJIL TA 2026/2027" 
+                   class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-slate-800 font-medium" />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1">Nama Mata Pelajaran</label>
+            <input type="text" id="input-mapel" value="Mapel Kejuruan Otomotif" 
                    class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none text-slate-800 font-medium" />
           </div>
 
@@ -348,7 +353,7 @@
           
           <div>
             <label class="block text-xs font-medium text-slate-600 mb-1">Keterangan Foto Tambahan</label>
-            <input type="text" id="input-foto-caption" value="Kegiatan Asesemen Sumatif Tengah Semester Berlangsung Khidmat & Tertib" 
+            <input type="text" id="input-foto-caption" value="Kegiatan Ujian Tengah Semester Berlangsung Khidmat & Tertib" 
                    class="w-full px-3 py-1.5 text-xs border border-slate-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-slate-700" />
           </div>
         </div>
@@ -402,7 +407,7 @@
         <!-- JUDUL DOKUMEN -->
         <div class="text-center my-6">
           <h1 class="text-[14pt] font-bold uppercase underline tracking-wide">BERITA ACARA PELAKSANAAN</h1>
-          <h2 id="view-judul-ujian" class="text-[13pt] font-bold uppercase tracking-wide">ASESEMEN SUMATIF TENGAH SEMESTER GANJIL TA 2026/2027</h2>
+          <h2 id="view-judul-ujian" class="text-[13pt] font-bold uppercase tracking-wide">UJIAN TENGAH SEMESTER GANJIL TA 2026/2027</h2>
         </div>
 
         <!-- ISI PERNYATAAN RESMI -->
@@ -411,7 +416,7 @@
           tanggal <span id="view-tgl-terbilang" class="font-bold">Dua Puluh Lima</span> 
           bulan <span id="view-bln-terbilang" class="font-bold">November</span> 
           tahun <span id="view-thn-terbilang" class="font-bold">Dua Ribu Dua Puluh Enam</span> 
-          bertempat di <span id="view-ruang" class="font-bold">Ruang Kelas SMKN 1 Selong</span> Kabupaten Lombok Timur telah dilaksanakan Asesemen Sumatif tengah semester tahun ajaran <span id="view-thn-ajaran" class="font-bold">2026/2027</span> pada pukul <span id="view-jam-mulai" class="font-bold">08.00</span> sampai dengan pukul <span id="view-jam-selesai" class="font-bold">09.00</span> WITA.
+          bertempat di <span id="view-ruang" class="font-bold">Ruang Kelas SMKN 1 Selong</span> Kabupaten Lombok Timur telah dilaksanakan ujian tengah semester tahun ajaran <span id="view-thn-ajaran" class="font-bold">2026/2027</span>, Mata Pelajaran <span id="view-mapel" class="font-bold"> Mapel Kejuruan Otomotif</span> pada pukul <span id="view-jam-mulai" class="font-bold">08.00</span> sampai dengan pukul <span id="view-jam-selesai" class="font-bold">09.00</span> WITA.
         </p>
 
         <!-- RINCIAN DATA -->
@@ -547,7 +552,7 @@
         </div>
 
         <div class="mb-4 text-[11.5pt]">
-          <p><span class="font-semibold">Kegiatan:</span> <span id="view-doc-judul">ASESEMEN SUMATIF TENGAH SEMESTER GANJIL TA 2026/2027</span></p>
+          <p><span class="font-semibold">Kegiatan:</span> <span id="view-doc-judul">UJIAN TENGAH SEMESTER GANJIL TA 2026/2027</span></p>
           <p><span class="font-semibold">Kelas / Ruang:</span> <span id="view-doc-kelas">XI TKR 1</span> / <span id="view-doc-ruang">Ruang Kelas SMKN 1 Selong</span></p>
           <p><span class="font-semibold">Waktu Pelaksanaan:</span> <span id="view-doc-waktu">Selasa, 25 November 2026 (08.00 - 09.00 WITA)</span></p>
         </div>
@@ -570,7 +575,7 @@
         <!-- Keterangan Dokumentasi -->
         <div class="border border-slate-300 rounded p-3 text-[10.5pt] italic bg-slate-50/50 mb-8">
           <p class="font-semibold not-italic underline text-[11pt] mb-1">Catatan Dokumentasi:</p>
-          <p id="view-doc-caption">Kegiatan Asesemen Sumatif Tengah Semester Berlangsung Khidmat & Tertib.</p>
+          <p id="view-doc-caption">Kegiatan Ujian Tengah Semester Berlangsung Khidmat & Tertib.</p>
         </div>
 
         <!-- Tanda Tangan Lampiran Dokumentasi -->
@@ -1319,8 +1324,9 @@
     // Sinkronisasi input teks form ke lembar pratinjau dokumen
     function syncFormInputsToPreview() {
       const judulUjian = document.getElementById('input-judul-ujian').value;
-      const hari = document.getElementById('input-hari').value;
+            const hari = document.getElementById('input-hari').value;
       const tglValue = document.getElementById('input-tanggal').value; // YYYY-MM-DD
+      const mapel = document.getElementById('input-mapel').value;
       const jamMulai = document.getElementById('input-jam-mulai').value;
       const jamSelesai = document.getElementById('input-jam-selesai').value;
       const jurusan = document.getElementById('input-jurusan').value;
@@ -1352,6 +1358,7 @@
       document.getElementById('view-thn-terbilang').textContent = angkaTerbilang(yearNum).trim();
       document.getElementById('view-ruang').textContent = ruang;
       document.getElementById('view-thn-ajaran').textContent = `${yearNum}/${yearNum + 1}`;
+       document.getElementById('view-mapel').textContent = mapel;
       document.getElementById('view-jam-mulai').textContent = jamMulai;
       document.getElementById('view-jam-selesai').textContent = jamSelesai;
       document.getElementById('view-jurusan').textContent = jurusan;
